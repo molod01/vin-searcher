@@ -11,14 +11,14 @@ export class Car{
             this.fuelType = json.find(obj => obj.Variable.includes('Fuel Type')).Value
         }
         else{
-            this.manufacturer ="" 
+            this.manufacturer = "" 
             this.model = ""
             this.modelYear = ""
             this.bodyClass = ""
-            this.plantCountry ="" 
-            this.plantState =""
-            this.plantCity =""
-            this.fuelType =""
+            this.plantCountry = "" 
+            this.plantState = ""
+            this.plantCity = ""
+            this.fuelType = ""
         }
     }
 

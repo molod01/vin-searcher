@@ -13,21 +13,19 @@ function Vehicle({car}) {
   const [image, setImage] = useState('defaultimage');
 
   useEffect(() => {
-    console.log('useEffect')
     getImage(car.manufacturer + " " + car.model)
   }, [car]);
 
   async function getImage(key){
     console.log(key)
-    if(key != "null null"){
-      const imageUrl = await fetch(`https://bing-image-search1.p.rapidapi.com/images/search?q=${key}&count=1`, options)
-      .then(response => response.json())
-      .then(json => {
-        return json.value[0].thumbnailUrl
-      });
-      console.log(`imageUrl: ${imageUrl}`)
-      setImage(imageUrl)
-    }
+    // const imageUrl = await fetch(`https://bing-image-search1.p.rapidapi.com/images/search?q=${key}&count=1`, options)
+    // .then(response => response.json())
+    // .then(json => {
+    //   return json.value[0].contentUrl
+    // });
+    const imageUrl = "http://nissaninsider.co.uk/wp-content/uploads/2014/04/Nissan-logo-1024x867.jpg"
+    //console.log(`imageUrl: ${imageUrl}`)
+    setImage(imageUrl)
   }
 
   return(
@@ -38,6 +36,7 @@ function Vehicle({car}) {
       <p className="card-text">Model: {car.model}</p>
       <p className="card-text">Year: {car.modelYear}</p>
       <p className="card-text">Body Class: {car.bodyClass}</p>
+      <p className="card-text">Plant Country: {car.plantCountry}</p>
     </div>
   </div>
   )
