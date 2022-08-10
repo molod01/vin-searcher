@@ -1,5 +1,6 @@
 import {React, useState, useEffect, useSyncExternalStore} from 'react';
 import PropTypes from 'prop-types';
+//defaultCarImage = 
 
 const options = {
   method: 'GET',
@@ -10,8 +11,8 @@ const options = {
 };
 
 function Vehicle({car}) {
-  const [image, setImage] = useState('defaultimage');
-
+  let defaultCarImage = require('../../assets/default-car-card.jpg')
+  const [image, setImage] = useState(defaultCarImage);
   useEffect(() => {
     getImage(car.manufacturer + " " + car.model)
   }, [car]);
@@ -23,20 +24,19 @@ function Vehicle({car}) {
     // .then(json => {
     //   return json.value[0].contentUrl
     // });
-    const imageUrl = "http://nissaninsider.co.uk/wp-content/uploads/2014/04/Nissan-logo-1024x867.jpg"
+    const imageUrl = defaultCarImage
     //console.log(`imageUrl: ${imageUrl}`)
     setImage(imageUrl)
   }
 
   return(
   <div className="card">
-    <img className="card-img-top" src={image} alt="Car Photo"/>
-    <div className="card-body">
+    <img className="card-img-top" src={ image } alt="Car Photo"/>
+    <div className="card-body mx-4">
       <p className="card-text">Manufacturer: {car.manufacturer}</p>
-      <p className="card-text">Model: {car.model}</p>
-      <p className="card-text">Year: {car.modelYear}</p>
-      <p className="card-text">Body Class: {car.bodyClass}</p>
+      <p className="card-text">Model: {car.model}, {car.modelYear}</p>
       <p className="card-text">Plant Country: {car.plantCountry}</p>
+      <p className="card-text">Fuel type: {car.fuelType}</p>
     </div>
   </div>
   )

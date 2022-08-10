@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import { React, useState } from 'react';
 import $ from "jquery";
 import Car from "./model/Car"
 import Vehicle from "./components/Vehicle/Vehicle" 
-
 import './App.css';
-import RecentRequested from './components/RecentRequested/RecentRequested';
+import RecentlyRequested from './components/RecentlyRequested/RecentlyRequested';
+import { 
+  BrowserRouter,
+  Routes,
+  Route,
+  HashRouter,
+  useParams
+} from "react-router-dom";
+import Variables from './components/Variables/Variables';
 
-function App() {
+const Layout = () => {
   const [vin, setVin] = useState(undefined);
   const [recentVins, setVins] = useState([]);
   const [car, setCar] = useState(new Car());
@@ -50,25 +57,46 @@ function App() {
   const handleChange = (event) => {
     setVin(event.target.value)
   }
-
-  return (
-    <div className="App">
-      <main>
-        <div className="container-fluid">
-          <form className='form-inline' onSubmit={handleSubmit}>
-            <div className="input-group mb-2 mr-sm-2">
-              <input className="form-control" placeholder="VIN" pattern={VinRegex} onChange={handleChange} type="text"/>
-              <div className="input-group-append">
-                <input className="btn btn-primary" type="submit" value="Search"/>
-              </div>
-            </div>
-          </form>
-          <Vehicle car={car}/>
-          <RecentRequested requestedVins={recentVins || []} handler={searchFromRecently}/>
+  return(
+  <div className="App">
+  <main>
+    <div className="container-fluid">
+      <form className='form-inline' onSubmit={handleSubmit}>
+        <div className="input-group mb-2 mr-sm-2">
+          <input className="form-control" placeholder="VIN" pattern={VinRegex} onChange={handleChange} type="text"/>
+          <div className="input-group-append">
+            <input className="btn btn-primary" type="submit" value="Search"/>
+          </div>
         </div>
-      </main>
+      </form>
+      <Vehicle car={car}/>
+      <RecentlyRequested requestedVins={recentVins || []} handler={searchFromRecently}/>
     </div>
+  </main>
+</div>
+)
+}
+const Variable = () =>{
+  const params = useParams();
+  console.log(params)
+  return (
+  <div>
+  <p>{params.id}</p>
+    
+  </div>
   );
+}
+
+const App = () => {
+  return (
+  <BrowserRouter basename='/'>
+    <Routes>
+        <Route path="/" element={<Layout />}/>
+        <Route path="variables" element={<Variables />}/>
+        <Route path='variables/:id' element={<Variable />}/>
+    </Routes>
+  </BrowserRouter>
+  )
 }
 
 export default App;

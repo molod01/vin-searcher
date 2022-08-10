@@ -8,8 +8,8 @@ function RecentlyRequested({requestedVins, handler}){
     setVins(requestedVins)
   }, [requestedVins]);
   return(
-    <div className='mb-2'>
-      <h4>Recently requested</h4>
+    <div className='mt-2 text-center'>
+      <h6>Recently requested</h6>
       <ul className="list-group">{ listItems }</ul>
     </div>
   );
