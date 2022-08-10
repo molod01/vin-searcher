@@ -2,20 +2,9 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,15 +13,55 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+main{
+  margin: 10px;
+}
+span {
+  display: block;
+  font-size: 20px;
+  line-height: 28px;
+  color: #1a1f36;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/* input{
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
+input[type="submit"] {
+  background-color: rgb(84, 105, 212);
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, 
+              rgb(84, 105, 212) 0px 0px 0px 1px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.field input {
+  font-size: 16px;
+  line-height: 28px;
+  padding: 8px 16px;
+  width: 100%;
+  min-height: 44px;
+  border: unset;
+  border-radius: 4px;
+  outline-color: rgb(84 105 212 / 0.5);
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+label {
+  margin-bottom: 10px;
+}
+ */
