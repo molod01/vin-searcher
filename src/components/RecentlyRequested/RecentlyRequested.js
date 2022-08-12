@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 
 function RecentlyRequested({requestedVins, handler}){
    const [vins, setVins] = useState(requestedVins);
-   const listItems = vins.map((vin) => <li key={vin} onClick={handler} className='list-group-item'>{vin}</li>);
+   const listItems = vins.map((vin) => <li style={{cursor: "pointer"}} key={vin} onClick={handler} className='list-group-item'>{vin}</li>);
    useEffect(() => {
     setVins(requestedVins)
   }, [requestedVins]);

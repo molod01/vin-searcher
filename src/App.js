@@ -10,15 +10,16 @@ const App = () => {
   const [vin, setVin] = useState(undefined);
   const [car, setCar] = useState(undefined);
   const [waitForRequest, setWaitForRequest] = useState(false);
-
   const VinRegex = "[(A-H|J-N|P|R-Z|0-9)]{17}"
-
+  
   useEffect(() => {
     if(waitForRequest){
       handleSubmit()
       setWaitForRequest(false)
     }
   }, [vin]);
+  
+  const handleChange = (event) => setVin(event.target.value)
 
   const updateRecentlyRequested = () =>{
     if(recentVins.includes(vin)){
@@ -35,7 +36,10 @@ const App = () => {
     if(vin){
       await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/decodeVinExtended/${vin}?format=json`)
       .then(response => { return response.json() })
-      .then(response => { setCar(new Car(response.Results)) })
+      .then(response => { 
+        setCar(new Car(response.Results))
+        console.log(response.Results) 
+      })
       .catch(error => { throw Error(error)})
       updateRecentlyRequested()
     }
@@ -46,8 +50,6 @@ const App = () => {
     setVin(event.target.innerText)
     setWaitForRequest(true)
   }
-
-  const handleChange = (event) => setVin(event.target.value)
 
   return(
   <div className="App">
@@ -63,7 +65,7 @@ const App = () => {
       </form>
       <Vehicle car={car}/>
       <RecentlyRequested requestedVins={recentVins} handler={searchFromRecent}/>
-      <p className='text-center mt-2 small'><Link to={"/variables"}>Variables list</Link></p>
+      <p className='text-center mt-2 small'><Link to={"/variables"}>About Variables</Link></p>
     </div>
   </main>
 </div>
