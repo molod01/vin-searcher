@@ -15,7 +15,7 @@ function Vehicle({car}) {
   useEffect(() => {
     setImage(defaultCarImage)
     if(car){
-      getImage(car.manufacturer.Value.split()[0] + " " + car.model.Value + " " + car.modelYear.Value)
+      getImage("car " + car.modelYear.Value + " " + car.manufacturer.Value.split(" ")[0] + " " + car.model.Value)
     }
   }, [car]);
 

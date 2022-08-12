@@ -21,7 +21,7 @@ const Variable = () => {
       <div className="container mt-4">
         <h2 className="text-center mb-4">{variable.GroupName} / {variable.Name}</h2>
         <div className="container-sm" dangerouslySetInnerHTML={{__html: `${variable.Description}`}}></div>
-        <Link to={'/variables'} className="ms-2" style={{color: "black"}}>🠔 BACK</Link>
+        <Link to={'/variables'} className="ms-2" style={{color: "black"}}>&lt;- BACK</Link>
       </div>
     );
   }
