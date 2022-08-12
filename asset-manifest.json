@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/vin-searcher/static/css/main.dedeeebb.css",
-    "main.js": "/vin-searcher/static/js/main.bf1c9c1c.js",
+    "main.js": "/vin-searcher/static/js/main.70237483.js",
     "static/js/787.a76dbc8d.chunk.js": "/vin-searcher/static/js/787.a76dbc8d.chunk.js",
     "index.html": "/vin-searcher/index.html",
     "main.dedeeebb.css.map": "/vin-searcher/static/css/main.dedeeebb.css.map",
-    "main.bf1c9c1c.js.map": "/vin-searcher/static/js/main.bf1c9c1c.js.map",
+    "main.70237483.js.map": "/vin-searcher/static/js/main.70237483.js.map",
     "787.a76dbc8d.chunk.js.map": "/vin-searcher/static/js/787.a76dbc8d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dedeeebb.css",
-    "static/js/main.bf1c9c1c.js"
+    "static/js/main.70237483.js"
   ]
 }
