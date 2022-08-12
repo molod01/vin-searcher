@@ -18,6 +18,22 @@ const App = () => {
       setWaitForRequest(false)
     }
   }, [vin]);
+
+  async function handleSubmit(event) {
+    if(event){
+      event.preventDefault()
+    }
+    if(vin){
+      await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/decodeVinExtended/${vin}?format=json`)
+      .then(response => { return response.json()})
+      .then(response => { 
+        console.log(response.Message)
+        setCar(new Car(response.Results))
+      })
+      .catch(error => { throw Error(error)})
+      updateRecentlyRequested()
+    }
+  };
   
   const handleChange = (event) => setVin(event.target.value)
 
@@ -29,22 +45,6 @@ const App = () => {
     else setVins([vin, ...recentVins.slice(0, 4)])
   }
 
-  async function handleSubmit(event) {
-    if(event){
-      event.preventDefault()
-    }
-    if(vin){
-      await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/decodeVinExtended/${vin}?format=json`)
-      .then(response => { return response.json() })
-      .then(response => { 
-        setCar(new Car(response.Results))
-        console.log(response.Results) 
-      })
-      .catch(error => { throw Error(error)})
-      updateRecentlyRequested()
-    }
-  };
-
   const searchFromRecent = (event) =>{
     $('.form-control').val(event.target.innerText)
     setVin(event.target.innerText)
@@ -52,23 +52,23 @@ const App = () => {
   }
 
   return(
-  <div className="App">
-  <main className='m-3'>
-    <div className='container-md mx-6'>
-      <form className='form-inline' onSubmit={handleSubmit}>
-        <div className="input-group mb-2 mr-sm-2">
-          <input className="form-control" placeholder="VIN" pattern={VinRegex} onChange={handleChange} type="text"/>
-          <div className="input-group-append">
-            <input className="btn btn-primary" type="submit" value="Search"/>
+    <div className="App">
+    <main className='m-3'>
+      <div className='container-md mx-6'>
+        <form className='form-inline' onSubmit={handleSubmit}>
+          <div className="input-group mb-2 mr-sm-2">
+            <input className="form-control" placeholder="VIN" pattern={VinRegex} onChange={handleChange} type="text"/>
+            <div className="input-group-append">
+              <input className="btn btn-primary" type="submit" value="Search"/>
+            </div>
           </div>
-        </div>
-      </form>
-      <Vehicle car={car}/>
-      <RecentlyRequested requestedVins={recentVins} handler={searchFromRecent}/>
-      <p className='text-center mt-2 small'><Link to={"/variables"}>About Variables</Link></p>
-    </div>
-  </main>
-</div>
+        </form>
+        <Vehicle car={car}/>
+        <RecentlyRequested requestedVins={recentVins} handler={searchFromRecent}/>
+        <p className='text-center mt-2 small'><Link to={"/variables"}>About Variables</Link></p>
+      </div>
+    </main>
+  </div>
 )
 }
 

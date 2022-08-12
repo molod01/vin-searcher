@@ -28,7 +28,7 @@ const Variables = () => {
   if(variables){
     return(
     <div>
-      <div className='container-sm'>
+      <div className='container-sm my-4'>
         <span className='my-4'>
         <Link to={'/'} className="position-absolute text-decoration-none display-2 ms-2" style={{color: "black", lineHeight: "0.8"}}>🠔</Link>
         <h1 className='text-center'>Variables</h1>
