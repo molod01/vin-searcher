@@ -36,9 +36,9 @@ function Vehicle({car}) {
           <p className="card-text">Model: {car.model}, {car.modelYear}</p>
           <p className="card-text">Plant Country: {car.plantCountry}</p>
           <p className="card-text">Fuel type: {car.fuelType}</p>
-          <p className="card-text">Engine power: {car.enginePower}</p>
-          <p className="card-text">Engine manufacturer: {car.engineManufacturer}</p>
           <p className="card-text">Engine model: {car.engineModel}</p>
+          <p className="card-text">Engine manufacturer: {car.engineManufacturer}</p>
+          <p className="card-text">Engine power: {car.enginePower}</p>
           <p className="card-text">Cylinders count: {car.engineNumberOfCylinders}</p>
         </div>
       </div>
