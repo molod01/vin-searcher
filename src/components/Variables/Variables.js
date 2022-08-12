@@ -1,48 +1,51 @@
 import { React, useState, useEffect } from 'react';
-import $ from "jquery";
-import PropTypes from 'prop-types';
-import { render } from '@testing-library/react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const Variables = () => { 
-  let variables = []
   const [listItems, setListItems] = useState([]);
+  const [variables, setVariables] = useState(undefined);
+
   useEffect(() => {
-    $.ajax({
-      url:
-        `https://vpic.nhtsa.dot.gov/api/vehicles/getvehiclevariablelist?format=json`,
-      type: "GET",
-      dataType: "json",
-      headers:{
-        "Access-Control-Allow-Origin": "https://vpic.nhtsa.dot.gov",
-        "Access-Control-Allow-Credentials": true
-      },
-      success: function (response) {
-        console.log(response.Results)
-        variables = response.Results
-      },
-      error: function (xhr, ajaxOptions, thrownError) {
-        console.log(xhr.status);
-        console.log(thrownError);
-      }
-  }).then(()=>{
-    setListItems(variables.map((v) => <Link to={`/variables/${v.ID}`} key={v.ID} className='list-group-item'>{v.Name}</Link>));
-  });
+    async function fetchAPI(){
+      await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getvehiclevariablelist?format=json`)
+      .then(response => { return response.json() })
+      .then(response => { setVariables(response.Results)})
+      .catch(error => { throw Error(error)})
+    }
+    fetchAPI()
   }, []);
-  return(
-  <div>
-    <h1 className='text-center my-4'>Variables</h1>
-    <ul className="list-group m-2">
-      {listItems}
-    </ul>
-  </div>
-  );
+
+  useEffect(() => {
+    if(variables){
+      setListItems(
+        variables.map((v) => 
+          <Link to={`/variables/${v.ID}`} key={v.ID} className='list-group-item px-4'>{v.Name}</Link>
+      ));
+    }
+  }, [variables]);
+
+  if(variables){
+    return(
+    <div>
+      <div className='container-sm'>
+        <span className='my-4'>
+        <Link to={'/'} className="position-absolute text-decoration-none display-2 ms-2" style={{color: "black", lineHeight: "0.8"}}>🠔</Link>
+        <h1 className='text-center'>Variables</h1>
+        </span>
+        <ul className="list-group m-2">
+          {listItems}
+        </ul>
+      </div>
+    </div>
+    );
+  }
+  else{
+    return(
+      <h4 className="text-center font-weight-bold mt-5">Loading...</h4>
+    )
+  }
 };
-
-Variables.propTypes = {};
-
-Variables.defaultProps = {};
 
 export default Variables;
 
